@@ -1,0 +1,435 @@
+ <%= javascript_include_tag "accordion" %>
+ <%= javascript_include_tag "effects" %>
+ <%= javascript_include_tag "prototype" %>
+
+<!--
+<%= @video_uid.entry[0].title%>
+
+<%=@video_search.entry.size%>
+<%  @video_search.entry.each do|video| %> <br/> <br/>
+    <%="Hello: #{video.title}"%> <br/>
+    <%#="Hello: #{video.link[0].href}"%>
+    <% ruta=video.link[0].href[0..22] %>
+    <% ruta<<"embed/" %>
+    <% ruta<<video.link[0].href[31..41] %>
+    <br/>
+    <%#=ruta%>
+    <iframe type="text/html" width="640" height="385" src="<%=ruta%>" frameborder="0">
+    </iframe>
+    <%end%>
+
+ <br/>
+<iframe type="text/html" width="640" height="385" src="http://www.youtube.com/embed/pwkuKOXeeKs" frameborder="0">
+</iframe>
+
+
+ <% @cont=0 #=debug @user%>
+ <%  @user.entry.each do|video| %> 
+ <%  @cont+=1%>
+   <%if video.statistics.viewCount.to_i > 100000%>
+    <br/> <br/>
+    <%="#{@cont} Hello: #{video.title}"%> <br/>
+    <%="Hello: #{video.link[0].href}"%>
+    <% ruta=video.link[0].href[0..22] %>
+    <% ruta<<"embed/" %>
+    <% ruta<<video.link[0].href[31..41] %>
+    <br/>
+    <%=ruta%><br/>
+    <%=video.statistics.attributes%>
+    <%="Vistas:#{video.statistics.viewCount}"%>
+    <%="Publicado:#{video.published}"%>
+    <iframe type="text/html" width="640" height="385" src="<%=ruta%>" frameborder="0">
+    </iframe>
+    <%end%>
+    <%end%>
+
+<%#=debug @video_search.entry%>
+
+-->
+
+<head profile="http://gmpg.org/xfn/11">
+
+	<title>Que Suena Hoy!</title>
+
+	<!-- Meta Tags -->
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="keywords" content="accordion, javascript accordion, scriptaculous" />
+	<meta name="description" content="The ultimate modal window system, LightWindow, allows you to build your own theem, create mixed media galleries including flash, quictkime and images.   Through a variety of parameters this system can do it all and recreate any other system out there!" />
+
+	<meta name="robots" content="index, follow" />
+
+	<!-- JavaScript -->
+  <!-- <script type="text/javascript" src="combine.php?type=javascript&files=prototype.js,effects.js,accordion.js,code_highlighter.js,javascript.js,html.js"></script> -->
+
+
+	<!-- CSS -->
+  <link rel="stylesheet" type="text/css" href="css/default.css" />
+
+	<script type="text/javascript">
+
+		//
+		//  In my case I want to load them onload, this is how you do it!
+		//
+		Event.observe(window, 'load', loadAccordions, false);
+
+		//
+		//	Set up all accordions
+		//
+		function loadAccordions() {
+			var topAccordion = new accordion('horizontal_container', {
+				classNames : {
+					toggle : 'horizontal_accordion_toggle',
+					toggleActive : 'horizontal_accordion_toggle_active',
+					content : 'horizontal_accordion_content'
+				},
+				defaultSize : {
+					width : 525
+				},
+				direction : 'horizontal'
+			});
+
+			var bottomAccordion = new accordion('vertical_container');
+
+			var nestedVerticalAccordion = new accordion('vertical_nested_container', {
+			  classNames : {
+					toggle : 'vertical_accordion_toggle',
+					toggleActive : 'vertical_accordion_toggle_active',
+					content : 'vertical_accordion_content'
+				}
+			});
+
+			// Open first one
+			bottomAccordion.activate($$('#vertical_container .accordion_toggle')[0]);
+
+			// Open second one
+			topAccordion.activate($$('#horizontal_container .horizontal_accordion_toggle')[2]);
+		}
+
+	</script>
+
+	<!-- CSS -->
+	<style type="text/css" >
+
+		/*
+			Vertical Accordions
+		*/
+
+		.accordion_toggle {
+			display: block;
+			height: 30px;
+			width: 680px;
+			background: url(images/accordion_toggle.jpg) no-repeat top right #a9d06a;
+			padding: 0 10px 0 10px;
+			line-height: 30px;
+			color: #ffffff;
+			font-weight: normal;
+			text-decoration: none;
+			outline: none;
+			font-size: 12px;
+			color: #000000;
+			border-bottom: 1px solid #cde99f;
+			cursor: pointer;
+			margin: 0 0 0 0;
+                        -moz-border-radius:15px 55px 5px;
+                        -webkit-border-radius: 15px 55px 5px;
+		}
+
+		.accordion_toggle_active {
+			background: url(images/accordion_toggle_active.jpg) no-repeat top right #e0542f;
+			color: #ffffff;
+			border-bottom: 1px solid #f68263;
+		}
+
+		.accordion_content {
+			background-color: #ffffff;
+			color: #444444;
+			overflow: hidden;
+		}
+
+			.accordion_content h2 {
+				margin: 15px 0 5px 10px;
+				color: #0099FF;
+			}
+
+			.accordion_content p {
+				line-height: 150%;
+				padding: 5px 10px 15px 10px;
+			}
+
+		.vertical_accordion_toggle {
+			display: block;
+			height: 30px;
+			width: 600px;
+			background: url(images/accordion_toggle.jpg) no-repeat top right #a9d06a;
+			padding: 0 10px 0 10px;
+			line-height: 30px;
+			color: #ffffff;
+			font-weight: normal;
+			text-decoration: none;
+			outline: none;
+			font-size: 12px;
+			color: #000000;
+			border-bottom: 1px solid #cde99f;
+			cursor: pointer;
+			margin: 0 0 0 0;
+                        -moz-border-radius: 55px 55px 55px 55px;
+                        -webkit-border-radius: 55px 55px 55px 55px;
+		}
+
+		.vertical_accordion_toggle_active {
+			background: url(images/accordion_toggle_active.jpg) no-repeat top right #e0542f;
+			color: #ffffff;
+			border-bottom: 1px solid #f68263;
+		}
+
+		.vertical_accordion_content {
+			background-color: #ffffff;
+			color: #444444;
+			overflow: hidden;
+		}
+
+			.vertical_accordion_content h2 {
+				margin: 15px 0 5px 10px;
+				color: #0099FF;
+			}
+
+			.vertical_accordion_content p {
+				line-height: 150%;
+				padding: 5px 10px 15px 10px;
+			}
+
+		/*
+			Horizontal Accordion
+		*/
+
+		.horizontal_accordion_toggle {
+			/* REQUIRED */
+			float: left;	/* This make sure it stays horizontal */
+			/* REQUIRED */
+
+			display: block;
+			height: 100px;
+			width: 30px;
+			background: url(images/h_accordion_toggle.jpg) no-repeat top left #a9d06a;
+			color: #ffffff;
+			text-decoration: none;
+			outline: none;
+			border-right: 1px solid #cde99f;
+			cursor: pointer;
+			margin: 0 0 0 0;
+                        -moz-border-radius: 0px 55px 0px 55px;
+                        -webkit-border-radius: 0px 55px 0px 55px;
+		}
+
+		.horizontal_accordion_toggle_active {
+			background: url(images/h_accordion_toggle_active.jpg) no-repeat top left #e0542f;
+			border-right: 1px solid #f68263;
+		}
+
+		.horizontal_accordion_content {
+			/* REQUIRED */
+			height: 100px;	/* We need to define a height for the accordion as it stretches the width */
+			float: left;	/* This make sure it stays horizontal */
+			/* REQUIRED */
+
+			overflow: hidden;
+			background-color: #ffffff;
+			color: #444444;
+		}
+
+			.horizontal_accordion_content p {
+				width: 450px;
+				line-height: 150%;
+				padding: 5px 10px 15px 10px;
+			}
+
+                        .table-center
+                        {
+                          position:absolute;
+                          top:10px;
+                          left:25%;
+
+                        }
+
+
+#dvLoading
+
+{
+   background:#000 url('/images/rails.png') no-repeat center center; /*url('../images/load.gif')*/
+   height: 100%;
+   width: 100%;
+   position: fixed;
+   z-index: 1000;
+   left: 0;
+   top: 0;
+   opacity: 0.5;
+  -moz-opacity: 0.5;
+  filter: alpha(opacity=50);
+
+}
+
+
+
+    /* Container styling*/
+    #horizontal_container {
+      margin: 20px auto 20px auto;
+      width: 680px;
+      height: 100px;
+    }
+
+    #vertical_nested_container {
+      margin: 20px auto 20px auto;
+      width: 620px;
+    }
+
+	</style>
+
+
+</head>
+
+<body>
+
+
+<table border="0" cellpadding="0" cellspacing="0" bgcolor="#ffffff" width="400" class="table-center">
+<tr>
+	   <td width="40%">
+<div id="container">
+
+    <h1><span>Que Suena Hoy!</span></h1>
+
+    <p class="description" >Toda la m&uacute;sica del momento en un solo lugar.</p>
+
+	<div id="vertical_container" >
+
+
+		<h1 class="accordion_toggle">Los mas Vistos de la Semana</h1>
+		<div class="accordion_content">
+
+            <h2>Que videos quieres ver y escuchar?!</h2>
+
+            <div id="horizontal_container" >
+
+                <h3 class="horizontal_accordion_toggle">Las mas vistas</h3>
+                <div class="horizontal_accordion_content">
+                    <p>
+                        Integer commodo nibh sit amet odio. Pellentesque semper. Integer dolor. Donec scelerisque sapien placerat velit.
+                    </p>
+                </div>
+
+                <h3 class="horizontal_accordion_toggle"> Las mas recientes</h3>
+                <div class="horizontal_accordion_content">
+                    <p>
+                        Sed at pede vitae turpis porta condimentum. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla facilisi. Morbi erat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
+                    </p>
+                </div>
+
+                <h3 class="horizontal_accordion_toggle">Latinas</h3>
+                <div class="horizontal_accordion_content">
+                    <p>
+                        Curabitur quam lorem, laoreet molestie, eleifend id, pulvinar vel, nunc. Proin congue felis quis purus. Aenean porttitor, lacus vel bibendum pulvinar, leo nulla suscipit leo, nec lobortis orci diam eget turpis. Sed eu eros et orci consectetuer molestie. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+                    </p>
+                </div>
+
+                <h3 class="horizontal_accordion_toggle">Electronica</h3>
+                <div class="horizontal_accordion_content">
+                    <p>
+                        Sed at pede vitae turpis porta condimentum. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla facilisi. Morbi erat.
+                    </p>
+                </div>
+
+                <h3 class="horizontal_accordion_toggle">Pop</h3>
+                <div class="horizontal_accordion_content">
+                    <p>
+                        Integer commodo nibh sit amet odio. Pellentesque semper. Integer dolor. Donec scelerisque sapien placerat velit. Nulla suscipit, elit quis pretium hendrerit, nisi sapien lobortis libero, et consectetuer lorem sapien id urna.
+                    </p>
+                </div>
+
+            </div>
+
+   	</div>
+
+
+		<h1 class="accordion_toggle">Los m&aacute;s Actuales</h1>
+		<div class="accordion_content">
+
+            <div id="vertical_nested_container" >
+
+
+         <%  @user.entry.each do|video| %>
+
+            <%if video.statistics.viewCount.to_i > 100000%>
+               <h3 class="vertical_accordion_toggle"> <%="#{video.title}"%></h3>
+                <div class="vertical_accordion_content">
+                    <p>
+          <% ruta=video.link[0].href[0..22] %>
+          <% ruta<<"embed/" %>
+          <% ruta<<video.link[0].href[31..41] %>
+              <%#=video.statistics.attributes%>
+             <%="Vistas:#{video.statistics.viewCount}"%><br/>
+              <%="Publicado:#{video.published}"%><br/>
+                  <iframe type="text/html" width="640" height="385" src="<%=ruta%>" frameborder="0">
+                  </iframe>
+              </p>
+                </div>
+             <%end%>
+            <%end%>
+
+            </div>
+
+   	</div>
+
+
+
+
+
+
+
+	</div>
+
+	<div class="page-footer">
+		<p>&copy; Copyright 2013 <a href="http://www.granjabit.com"><small>granjabit</small></a></p>
+		<p></p>
+
+	</div>
+
+</div>
+
+
+
+
+
+
+    </td>
+
+    
+
+
+
+
+    <td width="10%">
+        <p>&nbsp;</p>
+      </td>
+
+    <!--  -->
+
+
+
+    </tr>
+    </table>
+
+<script type="text/javascript" >
+
+	//
+	// You can hide the accordions on page load like this, it maintains accessibility
+	//
+	// Special thanks go out to Will Shaver @ http://primedigit.com/
+	//
+	var verticalAccordions = $$('.accordion_toggle');
+	verticalAccordions.each(function(accordion) {
+		$(accordion.next(0)).setStyle({
+		  height: '0px'
+		});
+	});
+
+
+</script>
